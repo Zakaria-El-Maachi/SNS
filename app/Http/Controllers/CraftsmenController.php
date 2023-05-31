@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use app\Models\request;
+use app\Models\craftsman;
 
 class CraftsmenController extends Controller
 {
@@ -10,7 +10,7 @@ class CraftsmenController extends Controller
 
     public function index()
     {
-        $requests = auth()->user()->requests;
-        return view('craftsmen', compact('requests'));
+        $craftsmen = craftsman::all();
+        return view('craftsmen', compact('craftsmen'));
     }
 }
