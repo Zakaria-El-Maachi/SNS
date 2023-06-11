@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use app\Models\craftsman;
+use App\Models\craftsman;
 
 class CraftsmenController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {

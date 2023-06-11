@@ -17,4 +17,8 @@ class review extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function request()
+    {
+        return $this->belongsTo(request::class);
+    }
 }

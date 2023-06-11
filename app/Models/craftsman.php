@@ -20,11 +20,6 @@ class craftsman extends Model
         return $this->hasMany(availability::class);
     }
 
-    public function reviews()
-    {
-        return $this->hasMany(review::class);
-    }
-
     public function services()
     {
         return $this->belongsToMany(service::class);

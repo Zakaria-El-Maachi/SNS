@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->enum('status', ['pending', 'accepted', 'rejected', 'aborted', 'finished']);
             $table->string('location');
+            $table->string("image");
             $table->timestamps();
         });
     }
