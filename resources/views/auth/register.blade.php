@@ -20,10 +20,7 @@
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -32,11 +29,21 @@
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        </div>
+
+        <div class="flex items-center justify-between">
+            <h4>Type of the Account</h4>
+        </div>
+        <div class="mt-4">
+            <x-input-label for="user_type" :value="__('User')" />
+            <x-text-input id="user_type" class="block mt-1 w-full" type="radio" name="account_type" value="User" required />
+        </div>
+        <div class="mt-4">
+            <x-input-label for="craftsman_type" :value="__('Craftsman')" />
+            <x-text-input id="craftsman_type" class="block mt-1 w-full" type="radio" name="account_type" value="Craftsman" required />
         </div>
 
         <div class="flex items-center justify-end mt-4">

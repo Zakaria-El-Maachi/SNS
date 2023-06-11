@@ -20,12 +20,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/craftsmen', [CraftsmenController::class, 'index'])->name('craftsmen');
-Route::get('/ongoing', [OngoingController::class, 'index'])->name('ongoing');
-Route::get('/finished', [FinishedController::class, 'index'])->name('finished');
+Route::middleware('auth')->group(function () {
+    Route::get('/craftsmen', [CraftsmenController::class, 'index'])->name('craftsmen.index');
+    Route::get('/requests', [OngoingController::class, 'index'])->name('requests.index');
+    Route::view('/requests/create', 'requests/create')->name('requests.create');
+    Route::get('{craftsman}/reviews', [ReviewsController::class, 'index'])->name('reviews.index');
+});
+
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $user_type = auth()->user()->account_type;
+    if ($user_type == 'User') {
+        return view('dashboard');
+    } elseif ($user_type == 'Craftsman') {
+        return view('craftsman/dashboard');
+    }
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

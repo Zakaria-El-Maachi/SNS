@@ -23,7 +23,8 @@ class requestFactory extends Factory
             'craftsman_id' => $this->faker->numberBetween(1, 15),
             'description' => $this->faker->paragraph(5),
             'status' => $this->faker->randomElement(['accepted', 'pending', 'finished']),
-            'location' => $this->faker->city()
+            'location' => $this->faker->city(),
+            'image' => $this->faker->randomElement(['storage/uploads/request1', 'storage/uploads/request2', 'storage/uploads/request3'])
         ];
     }
 }

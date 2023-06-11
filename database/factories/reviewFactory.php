@@ -19,8 +19,7 @@ class reviewFactory extends Factory
         return [
             'request_id' => $this->faker->numberBetween(1, 10),
             'description' => $this->faker->paragraph(5),
-            'status' => $this->faker->randomElement([1, 2, 3, 4, 5]),
-            'location' => $this->faker->city()
+            'rating' => $this->faker->randomElement([1, 2, 3, 4, 5])
         ];
     }
 }
