@@ -18,6 +18,9 @@ class OngoingController extends Controller
     public function index()
     {
         $requests = auth()->user()->requests;
+        if ($requests->isEmpty()) {
+            return redirect('/dashboard')->with('error', 'You have not made a request yet');
+        }
         return view('requests/index', compact('requests'));
     }
     public function create(craftsman $craftsman)

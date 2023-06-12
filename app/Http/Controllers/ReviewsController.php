@@ -16,7 +16,10 @@ class ReviewsController extends Controller
 
     public function index(craftsman $craftsman)
     {
-        $requests = $craftsman->requests()->with('review')->get();
+        $requests = \App\Models\request::with('review')->whereHas('review')->where('craftsman_id', $craftsman->id)->get();
+        if ($requests->isEmpty()) {
+            return redirect('craftsmen')->with('error', 'No reviews have been written yet');
+        }
         return view('reviews/index', compact('requests'));
     }
 
@@ -27,21 +30,21 @@ class ReviewsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'rating' => ['required', 'between:1,5', 'numeric'],
-            'description' => 'text',
+            'rating' => ['required', 'between:1,5', 'integer'],
+            'description' => 'string',
             'request_id' => 'required',
         ]);
         $existingReview = review::where('request_id', $request->request_id)->exists();
 
         if ($existingReview) {
-            return redirect()->back()->with('error', 'A review already exists for this request.');
+            return redirect('/dashboard')->with('error', 'A review already exists for this request.');
         }
         review::create([
-            'request_id' => $request['user'],
-            'rating' => $request['craftsman'],
-            'description' => $request['service'],
+            'request_id' => $request->request_id,
+            'rating' => $request->rating,
+            'description' => $request->description,
         ]);
 
-        return redirect('/requests');
+        return redirect('/dashboard');
     }
 }

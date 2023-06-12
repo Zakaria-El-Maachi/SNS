@@ -17,7 +17,7 @@ class CraftsmanServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            'craftsman_id' => $this->faker->numberBetween(1, 15),
+            'craftsman_id' => $this->faker->numberBetween(1, 6),
             'service_id' => $this->faker->numberBetween(1, 5),
         ];
     }

@@ -17,7 +17,7 @@ class craftsmanFactory extends Factory
     public function definition(): array
     {
         return [
-            'company_name' => 1,
+            'company_name' => $this->faker->company(),
             'company_address' => $this->faker->city(),
             'description' => $this->faker->paragraph(3),
             'image' => $this->faker->randomElement(['uploads/plumber.avif', 'uploads/mechanic.jpeg', 'uploads/electrician.webp'])

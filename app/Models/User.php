@@ -53,6 +53,6 @@ class User extends Authenticatable
 
     public function craftsman()
     {
-        return $this->hasOne(craftsman::class);
+        return $this->belongsTo(craftsman::class);
     }
 }

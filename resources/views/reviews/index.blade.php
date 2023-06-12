@@ -10,12 +10,8 @@
         @foreach($requests as $request)
         <div class="flex flex-col justify-around border border-gray-500 rounded-lg my-7 p-5">
             <div>
-                <h4 class="mb-4">{{$request->user->name}}</h4>
-                <div class="flex w-full h-10">
-                    @for ($i = 0; $i<$request->review->rating; $i++)
-                        <img class="object-contain" src="/storage/images/star.svg" alt="star">
-                        @endfor
-                </div>
+                <h3 class="mb-4 font-extrabold">{{$request->user->name}}</h3>
+                <h4 class="mb-4 text-sm">{{$request->review->rating}} Stars</h4>
             </div>
             <div class="self-center">
                 <p class="mb-4">{{$request->review->description}}</p>

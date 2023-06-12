@@ -20,9 +20,9 @@ class requestFactory extends Factory
         return [
             'user_id' => 1,
             'service_id' => $this->faker->numberBetween(1, 5),
-            'craftsman_id' => $this->faker->numberBetween(1, 15),
+            'craftsman_id' => $this->faker->numberBetween(1, 6),
             'description' => $this->faker->paragraph(5),
-            'status' => $this->faker->randomElement(['accepted', 'pending', 'finished']),
+            'status' => 'finished',
             'location' => $this->faker->city(),
             'image' => $this->faker->randomElement(['storage/uploads/request1', 'storage/uploads/request2', 'storage/uploads/request3'])
         ];

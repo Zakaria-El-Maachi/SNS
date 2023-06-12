@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/requests', [OngoingController::class, 'store'])->name('requests.store');
     Route::get('{craftsman}/reviews', [ReviewsController::class, 'index'])->name('reviews.index');
     Route::get('{request}/reviews/create', [ReviewsController::class, 'create'])->name('reviews.create');
-    Route::get('/reviews', [ReviewsController::class, 'store'])->name('reviews.store');
+    Route::post('/reviews', [ReviewsController::class, 'store'])->name('reviews.store');
 });
 
 Route::middleware('auth')->group(function () {
