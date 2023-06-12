@@ -9,14 +9,8 @@ class review extends Model
 {
     use HasFactory;
 
-    public function craftsman()
-    {
-        return $this->belongsTo(craftsman::class);
-    }
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    protected $guarded = [];
+
     public function request()
     {
         return $this->belongsTo(request::class);

@@ -19,7 +19,7 @@ class requestFactory extends Factory
     {
         return [
             'user_id' => 1,
-            'service_id' => $this->faker->numberBetween(1, 7),
+            'service_id' => $this->faker->numberBetween(1, 5),
             'craftsman_id' => $this->faker->numberBetween(1, 15),
             'description' => $this->faker->paragraph(5),
             'status' => $this->faker->randomElement(['accepted', 'pending', 'finished']),

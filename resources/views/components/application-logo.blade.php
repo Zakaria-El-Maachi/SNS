@@ -1,1 +1,1 @@
-<img class="block w-16" src="storage/images/logo.png" alt="Logo">
+<img class="block w-16" src="/storage/images/logo.png" alt="Logo">

@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(request::class);
     }
+
+    public function craftsman()
+    {
+        return $this->hasOne(craftsman::class);
+    }
 }

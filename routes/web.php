@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CraftsmenController;
 use App\Http\Controllers\OngoingController;
+use App\Http\Controllers\ReviewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,13 @@ Route::middleware('auth')->group(function () {
     Route::get('{craftsman}/requests/create', [OngoingController::class, 'create'])->name('requests.create');
     Route::post('/requests', [OngoingController::class, 'store'])->name('requests.store');
     Route::get('{craftsman}/reviews', [ReviewsController::class, 'index'])->name('reviews.index');
+    Route::get('{request}/reviews/create', [ReviewsController::class, 'create'])->name('reviews.create');
+    Route::get('/reviews', [ReviewsController::class, 'store'])->name('reviews.store');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/craftsman/requests', [CraftRequestController::class, 'index'])->name('craftsman/requests.index');
+    Route::get('craftsman/reviews.index', [CraftReviewsController::class, 'index'])->name('craftsman/reviews.index');
 });
 
 
