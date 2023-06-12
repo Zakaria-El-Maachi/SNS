@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\craftsman;
 
 class RegisteredUserController extends Controller
 {
@@ -34,13 +35,33 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'account_type' => ['required'],
         ]);
+
+        $craftsman_id = null;
+
+        if ($request->account_type == 'Craftsman') {
+            $request->validate([
+                'company' => ['required', 'string', 'max:255'],
+                'address' => ['required', 'string'],
+                'description' => ['required'],
+                'image' => ['required', 'image'],
+            ]);
+            $craftsman = craftsman::create([
+                'company_name' => $request->company,
+                'company_address' => $request->address,
+                'description' => $request->description,
+                'image' => $request->image,
+            ]);
+            $craftsman_id = $craftsman->id;
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'account_type' => $request->account_type,
+            'craftsman_id' => $craftsman_id,
         ]);
 
         event(new Registered($user));

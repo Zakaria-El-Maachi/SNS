@@ -7,8 +7,14 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/js/registration.js',
             ],
             refresh: true,
         }),
     ],
+    resolve: {
+        alias: {
+          $: 'jquery',
+        },
+      },
 });

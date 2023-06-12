@@ -1,7 +1,7 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    @vite(['resources/js/registration.js'])
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
-
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -34,16 +34,44 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between mt-4">
             <h4>Type of the Account</h4>
+            <div class="flex items-center gap-x-3">
+                <x-input-label for="user_type" :value="__('User')" />
+                <input id="user_type" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="radio" name="account_type" value="User" required />
+            </div>
+            <div class="flex items-center gap-x-3">
+                <x-input-label for="craftsman_type" :value="__('Craftsman')" />
+                <input id="craftsman_type" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm'" type="radio" name="account_type" value="Craftsman" required />
+            </div>
         </div>
-        <div class="mt-4">
-            <x-input-label for="user_type" :value="__('User')" />
-            <x-text-input id="user_type" class="block mt-1 w-full" type="radio" name="account_type" value="User" required />
+
+        <!-- Company -->
+        <div class="mt-4 hidden" id="Company">
+            <x-input-label for="company" :value="__('Company')" />
+            <x-text-input id="company" class="block mt-1 w-full" type="text" name="company" :value="old('company')" />
+            <x-input-error :messages="$errors->get('company')" class="mt-2" />
         </div>
-        <div class="mt-4">
-            <x-input-label for="craftsman_type" :value="__('Craftsman')" />
-            <x-text-input id="craftsman_type" class="block mt-1 w-full" type="radio" name="account_type" value="Craftsman" required />
+
+        <!-- Address -->
+        <div class="mt-4 hidden" id="Address">
+            <x-input-label for="address" :value="__('Address')" />
+            <x-text-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" />
+            <x-input-error :messages="$errors->get('address')" class="mt-2" />
+        </div>
+
+        <!-- Description -->
+        <div class="mt-4 hidden" id="Description">
+            <x-input-label for="description" :value="__('Description')" />
+            <textarea id="description" class="block mt-1 w-full" name="description" :value="old('description')"></textarea>
+            <x-input-error :messages="$errors->get('description')" class="mt-2" />
+        </div>
+
+        <!-- Image -->
+        <div class="mt-4 hidden" id="Image">
+            <x-input-label for="image" :value="__('Image')" />
+            <input id="image" class="block mt-1 w-full" type="file" name="image" />
+            <x-input-error :messages="$errors->get('image')" class="mt-2" />
         </div>
 
         <div class="flex items-center justify-end mt-4">

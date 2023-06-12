@@ -9,6 +9,12 @@ class craftsman extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'company_name',
+        'company_address',
+        'description',
+        'image',
+    ];
 
     public function requests()
     {
