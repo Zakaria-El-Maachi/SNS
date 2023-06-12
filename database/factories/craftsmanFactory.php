@@ -20,7 +20,7 @@ class craftsmanFactory extends Factory
             'company_name' => 1,
             'company_address' => $this->faker->city(),
             'description' => $this->faker->paragraph(3),
-            'image' => $this->faker->randomElement(['storage/uploads/craftsman1', 'storage/uploads/craftsman2', 'storage/uploads/craftsman1'])
+            'image' => $this->faker->randomElement(['uploads/plumber.avif', 'uploads/mechanic.jpeg', 'uploads/electrician.webp'])
         ];
     }
 }

@@ -21,9 +21,7 @@
                     <x-nav-link :href="route('requests.index')" :active="request()->routeIs('requests.index')">
                         {{ __('Ongoing Requests') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('requests.create')" :active="request()->routeIs('requests.create')">
-                        {{ __('New Request') }}
-                    </x-nav-link>
+
                 </div>
             </div>
 

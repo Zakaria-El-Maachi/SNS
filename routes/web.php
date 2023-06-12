@@ -23,7 +23,8 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/craftsmen', [CraftsmenController::class, 'index'])->name('craftsmen.index');
     Route::get('/requests', [OngoingController::class, 'index'])->name('requests.index');
-    Route::view('/requests/create', 'requests/create')->name('requests.create');
+    Route::get('{craftsman}/requests/create', [OngoingController::class, 'create'])->name('requests.create');
+    Route::post('/requests', [OngoingController::class, 'store'])->name('requests.store');
     Route::get('{craftsman}/reviews', [ReviewsController::class, 'index'])->name('reviews.index');
 });
 

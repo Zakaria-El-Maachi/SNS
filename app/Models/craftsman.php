@@ -28,6 +28,10 @@ class craftsman extends Model
 
     public function services()
     {
-        return $this->belongsToMany(service::class);
+        return $this->hasManyThrough(service::class, CraftsmanService::class, 'craftsman_id', 'id', 'id', 'service_id');
+    }
+    public function user()
+    {
+        return $this->hasOne(User::class);
     }
 }

@@ -9,6 +9,8 @@ class request extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function craftsman()
     {
         return $this->belongsTo(craftsman::class);
@@ -21,5 +23,10 @@ class request extends Model
     public function review()
     {
         return $this->hasOne(review::class);
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(service::class);
     }
 }

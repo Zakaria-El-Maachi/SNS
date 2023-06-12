@@ -47,12 +47,14 @@ class RegisteredUserController extends Controller
                 'description' => ['required'],
                 'image' => ['required', 'image'],
             ]);
+            $path = $request->image->store('uploads', 'public');
             $craftsman = craftsman::create([
                 'company_name' => $request->company,
                 'company_address' => $request->address,
                 'description' => $request->description,
-                'image' => $request->image,
+                'image' => $path,
             ]);
+
             $craftsman_id = $craftsman->id;
         }
 
