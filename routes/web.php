@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CraftRequestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CraftsmenController;
 use App\Http\Controllers\OngoingController;
@@ -29,6 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::get('{craftsman}/reviews', [ReviewsController::class, 'index'])->name('reviews.index');
     Route::get('{request}/reviews/create', [ReviewsController::class, 'create'])->name('reviews.create');
     Route::post('/reviews', [ReviewsController::class, 'store'])->name('reviews.store');
+
+    Route::get('/craftsman/requests/index', [CraftRequestController::class, 'index'])->name('craftsman.requests.index');
+    Route::patch('/craftsman/request', [CraftRequestController::class, 'update'])->name('craftsman.request.update');
 });
 
 Route::middleware('auth')->group(function () {
@@ -38,12 +42,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/dashboard', function () {
-    $user_type = auth()->user()->account_type;
-    if ($user_type == 'User') {
-        return view('dashboard');
-    } elseif ($user_type == 'Craftsman') {
-        return view('craftsman/dashboard');
-    }
+    return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

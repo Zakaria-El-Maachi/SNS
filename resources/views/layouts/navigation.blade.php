@@ -18,10 +18,15 @@
                     <x-nav-link :href="route('craftsmen.index')" :active="request()->routeIs('craftsmen.index')">
                         {{ __('Craftsmen') }}
                     </x-nav-link>
+                    @if(auth()->user()->account_type == 'User')
                     <x-nav-link :href="route('requests.index')" :active="request()->routeIs('requests.index')">
                         {{ __('Ongoing Requests') }}
                     </x-nav-link>
-
+                    @elseif(auth()->user()->account_type == 'Craftsman')
+                    <x-nav-link :href="route('craftsman.requests.index')" :active="request()->routeIs('craftsman.requests.index')">
+                        {{ __('Requests') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
